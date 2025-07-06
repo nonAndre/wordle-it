@@ -9,15 +9,12 @@ function App() {
   const [word, setWord] = useState("");
   
   return (
-    <div className="grid h-screen grid-cols-[1fr_1fr_1fr] justify-center">
-        <div className='bg-white-600'/>
+    <div className="flex items-center justify-center">
         <div className='flex flex-col justify-between items-center'>
           <Header/>
           <Grid letter = {word} setBuffer={setWord} />
           <Keyboard setPhrase={setWord}/>
-          
         </div> 
-        <div className='bg-white-600'/>
     </div>
   )
 }

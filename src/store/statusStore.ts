@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { allWords } from '../words/allword';
 
 interface StatusStore {
     greenLetters: Array<string | undefined > ,
@@ -21,7 +22,7 @@ const useStatusStore = create<StatusStore>()(set => ({
     greenLetters: [],
     grayLetters: [],
     yellowLetters: [],
-    correctWord:"banca",
+    correctWord:allWords[Math.floor(Math.random()*allWords.length)],
     played:0,
     win:0,
     gameHistory:[],

@@ -41,7 +41,7 @@ export default function Grid({letter,setBuffer}:{letter:string,setBuffer:any}) {
   
   const checkWord = ()=>
   {     
-        if (curRow < 5)
+        if (curRow <= 5)
         {
 
           const currentWord = rows[curRow].join('');
@@ -58,6 +58,12 @@ export default function Grid({letter,setBuffer}:{letter:string,setBuffer:any}) {
               setGamePlayed();
               setOpenWinPanel(true);
             }
+             else if (curRow === 5 && reset === false)
+            {
+                setGameHistory(false);
+                setGamePlayed();
+                setOpenLosePanel(true);
+            }     
             else
             {
              setColor(currentWord,correctWord,setGrayLetters,setGreenLetters,setYellowLetters);
@@ -65,17 +71,11 @@ export default function Grid({letter,setBuffer}:{letter:string,setBuffer:any}) {
              setCurCol(0);
             }
          }
-         else if (currentWord.length <= 5 || !allWords.includes(currentWord))
+         else if (currentWord.length < 5 || !allWords.includes(currentWord))
          {
            showToast();
          }
        }   
-       else if (curRow === 5 && reset === false)
-       {
-          setGameHistory(false);
-          setGamePlayed();
-          setOpenLosePanel(true);
-       }     
   };
 
 
@@ -186,13 +186,13 @@ export default function Grid({letter,setBuffer}:{letter:string,setBuffer:any}) {
     <LosePanel  openLosePanel={openLosePanel} setOpenLosePanel={setOpenLosePanel} setReset={setReset}/>
     <ToastContainer className="pt-24  text-white"  position="top-center" autoClose={2500} theme="colored"/>
 
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex flex-col items-center gap-2 h-4/5 w-full justify-center sm: max-h-3/5  sm:pb-8 sm:pt-10">
       {rows.map((row, rowIndex) => (
         <div key={rowIndex} className="flex flex-row gap-1">
           {row.map((cell, cellIndex) => (
             <motion.div
               key={cellIndex}
-              className={clsx("w-14 h-14 flex items-center justify-center border border-black animate-fade-in",getCellColor(cell,rowIndex,cellIndex))}
+              className={clsx("flex w-12 h-12 sm:w-16 sm:h-16 items-center justify-center border border-gray-500 text-xl sm:text-2xl font-bold ", getCellColor(cell,rowIndex,cellIndex))}
               {...getCellAnimation(rowIndex,cellIndex)}
             >
               <motion.p {...getCellAnimation(rowIndex,cellIndex)}>{cell}</motion.p>

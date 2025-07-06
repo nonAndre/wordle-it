@@ -55,14 +55,14 @@ function Header() {
   },[gameHistory]);
 
   return (
-    <div className='flex flex-row justify-between px-24 h-12 py-10 bg-white items-center w-full gap-2'>
+    <div className='flex flex-row justify-between  py-5 items-baseline w-full gap-2 h-1/20'>
             <p className='text-bold text-lg text-gray-400'>casuale</p>
             <p className='text-bold  text-5xl'>WORDLE</p>
             <button onClick={(e)=>{
               setOpen(true);
               e.currentTarget.blur();
             }}>
-              <IoStatsChartSharp id="stats" size={30} />
+              <IoStatsChartSharp id="stats" size={30} className="cursor-pointer"/>
             </button>
             <Dialog open={open} as="div" className="relative z-10 focus:outline-none" onClose={close}>
                         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">

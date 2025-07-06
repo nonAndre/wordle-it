@@ -72,21 +72,26 @@ export default function Keyboard({setPhrase}:{setPhrase : (ch:string)=>void}) {
 
 
   return (
-    <div className='flex flex-col items-center justify-between'>
-    <div className='flex flex-col items-center px-3 pb-24 gap-2'>
-        {
-        qwertyKeys.map((row,index)=>(
-         <div key={index} className="flex gap-2 items-center">
-            {row.map((letter,number)=>(
-                <button onClick={()=>onClick(letter)} key={number} className={clsx(
-                  'h-12 px-3 py-2 font-bold',
-                  getColor(letter)
-                )}>
-                    <p className='font-bold'>{letter}</p>
-                    </button>
-            ))}
-        </div>))
-    }</div>
+  <div className="flex flex-col items-center justify-between h-3/5 w-full pt-6"> 
+    <div className="flex flex-col items-center px-2 pb-24 gap-1 w-full max-w-sm mx-auto">
+      {qwertyKeys.map((row, index) => (
+        <div key={index} className="flex gap-2 justify-center w-full">
+          {row.map((letter, number) => (
+            <button
+              onClick={() => onClick(letter)}
+              key={number}
+              className={clsx(
+                "flex items-center justify-center h-14 w-14 sm:h-14 sm:w-15 px-1 py-1 sm:px-2 sm:py-2 font-bold rounded-sm text-sm sm:text-base cursor-pointer",
+                getColor(letter)
+              )}
+            >
+              <p className="flex font-bold">{letter}</p>
+            </button>
+          ))}
+        </div>
+      ))}
     </div>
-  )
+  </div>
+);
+
 }
